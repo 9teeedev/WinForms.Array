@@ -41,6 +41,8 @@
             label5 = new Label();
             txtMin = new TextBox();
             label6 = new Label();
+            button2 = new Button();
+            textBox2 = new TextBox();
             SuspendLayout();
             // 
             // label1
@@ -169,12 +171,34 @@
             label6.TabIndex = 11;
             label6.Text = "ค่าต่ำสุด";
             // 
+            // button2
+            // 
+            button2.BackColor = Color.FromArgb(255, 192, 255);
+            button2.Location = new Point(374, 226);
+            button2.Name = "button2";
+            button2.Size = new Size(131, 40);
+            button2.TabIndex = 13;
+            button2.Text = "ทดสอบ Array 2 มิติ";
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(374, 272);
+            textBox2.Multiline = true;
+            textBox2.Name = "textBox2";
+            textBox2.ScrollBars = ScrollBars.Vertical;
+            textBox2.Size = new Size(403, 145);
+            textBox2.TabIndex = 14;
+            // 
             // txtAvg
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(255, 255, 192);
             ClientSize = new Size(800, 450);
+            Controls.Add(textBox2);
+            Controls.Add(button2);
             Controls.Add(txtMin);
             Controls.Add(label6);
             Controls.Add(txtMax);
@@ -209,5 +233,7 @@
         private Label label5;
         private TextBox txtMin;
         private Label label6;
+        private Button button2;
+        private TextBox textBox2;
     }
 }

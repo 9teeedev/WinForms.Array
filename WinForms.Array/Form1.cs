@@ -9,42 +9,71 @@ namespace WinForms.Array
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string[] data = textBox1.Lines;
-            int[] number = new int[data.Length];
-            for (int i = 0; i < data.Length; i++)
+            try
             {
-                if (int.TryParse(data[i], out int value))
+                string[] data = textBox1.Lines;
+                int[] number = new int[data.Length];
+                for (int i = 0; i < data.Length; i++)
                 {
-                    number[i] = value;
+                    if (int.TryParse(data[i], out int value))
+                    {
+                        number[i] = value;
+                    }
+                    else
+                    {
+                        number[i] = 0; // Default to 0 if กรณีแปลงไม่สำเร็จ
+                    }
                 }
-                else
+                int sum = 0;
+                int max = number[0];
+                int min = number[0];
+                for (int i = 0; i < number.Length; i++)
                 {
-                    number[i] = 0; // Default to 0 if กรณีแปลงไม่สำเร็จ
+                    sum += number[i];
+                    if (number[i] > max)
+                    {
+                        max = number[i];
+                    }
+                    if (number[i] < min)
+                    {
+                        min = number[i];
+                    }
                 }
+                double avg = (double)sum / number.Length;
+
+                txtLength.Text = number.Length.ToString();
+                txtSum.Text = sum.ToString();
+                txtAverrage.Text = avg.ToString("F2");
+                txtMax.Text = max.ToString();
+                txtMin.Text = min.ToString();
             }
-            int sum = 0;
-            int max = number[0];
-            int min = number[0];
-            for (int i = 0; i < number.Length; i++)
+            catch (Exception ex)
             {
-                sum += number[i];
-                if (number[i] > max)
-                {
-                    max = number[i];
-                }
-                if (number[i] < min)
-                {
-                    min = number[i];
-                }
+                MessageBox.Show("Error: " + ex.Message);
             }
-            double avg = (double)sum / number.Length;
+        }
 
-            txtLength.Text = number.Length.ToString();
-            txtSum.Text = sum.ToString();
-            txtAverrage.Text = avg.ToString("F2");
-            txtMax.Text = max.ToString();
-            txtMin.Text = min.ToString();
-
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string[,] data = new string[5, 3] 
+            { 
+                { "USA", "Alice", "Wick"},
+                { "Japan", "Bob", "Smith"},
+                { "UK", "Charlie", "Johnson"},
+                { "Brazil", "Diana", "Brown"},
+                { "Canada", "Ethan", "Davis"}
+            };
+            int rows = data.GetLength(0); // จำนวนแถว
+            int cols = data.GetLength(1); // จำนวนคอลัมน์
+            string result = "";
+            for (int i = 0; i < rows; i++)
+            {
+                result += "ข้อมูลแถวที่ " + (i + 1) + " : ";
+                result += "ชื่อจริง : " + data[i, 1] + ", ";
+                result += "นามสกุล : " + data[i, 2] + ", ";
+                result += "ประเทศ : " + data[i, 0] + Environment.NewLine;
+            }
+            textBox2.Text = result;
         }
     }
 }
